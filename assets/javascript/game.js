@@ -25,3 +25,62 @@ var scoreGoal = 0;
 var winCount = 0;
 var lossCount = 0;
 
+// gets random numbers
+
+var getRandom = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+var gameStart = function() {
+
+    yourScore = 0;
+
+    scoreGoal = getRandom(19, 120);
+
+    crystal.blue.value = getRandom(1,12);
+    crystal.red.value = getRandom(1,12);
+    crystal.green.value = getRandom(1,12);
+    crystal.yellow.value = getRandom(1,12);
+
+    $("#your-score").text(yourScore);
+    $("#target-score").text(scoreGoal);
+
+
+    // Tester
+    console.log("-----------------------------------");
+    console.log("Target-Score: " + scoreGoal);
+    console.log("Blue: " + crystal.blue.value + " | Green: " + crystal.green.value + " | Red: " + crystal.red.value +
+      " | Yellow: " + crystal.yellow.value);
+    console.log("-----------------------------------");
+  
+}
+    // win or lose reset
+
+var checkWin = function() {
+
+    // if current score is higher then add a loss to counter
+    if (scoreGoal > yourScore) {
+        alert("You lost!");
+        console.log("You lost");
+
+        lossCount++;
+
+        $("#loss-count").text(lossCount);
+
+        startGame();
+    }
+
+    else if (scoreGoal === yourScore) {
+        alert("You Won!");
+        console.log("You Won!");
+
+        winCount++;
+
+        $("#win-count").text(winCount);
+
+        startGame();
+    }
+};
+
+
+
