@@ -1,26 +1,26 @@
 var crystal = {
     blue:
     {
-      name: "Blue",
-      value: 0
+        name: "Blue",
+        value: 0
     },
     green:
     {
-      name: "Green",
-      value: 0
+        name: "Green",
+        value: 0
     },
     red:
     {
-      name: "Red",
-      value: 0
+        name: "Red",
+        value: 0
     },
     yellow:
     {
-      name: "Yellow",
-      value: 0
+        name: "Yellow",
+        value: 0
     }
-  };
-  
+};
+
 
 var yourScore = 0;
 var scoreGoal = 0;
@@ -46,15 +46,15 @@ var gameStart = function () {
     crystal.yellow.value = getRandom(1, 12);
 
     $("#your-score").text(yourScore);
-    $("#target-score").text(scoreGoal);
+    $("#cpu-score").text(scoreGoal);
 
 
     // Tester
-    console.log("-----------------------------------");
-    console.log("Target Score: " + scoreGoal);
-    console.log("Blue: " + crystal.blue.value + " | Green: " + crystal.green.value + " | Red: " + crystal.red.value +
-        " | Yellow: " + crystal.yellow.value);
-    console.log("-----------------------------------");
+    // console.log("-----------------------------------");
+    // console.log("Target Score: " + scoreGoal);
+    // console.log("Blue: " + crystal.blue.value + " | Green: " + crystal.green.value + " | Red: " + crystal.red.value +
+    //     " | Yellow: " + crystal.yellow.value);
+    // console.log("-----------------------------------");
 
 }
 // win or lose reset
@@ -68,9 +68,10 @@ var checkWin = function () {
 
         lossCount++;
 
-        $("#loss-count").text(lossCount);
+        $("#losses").text(lossCount);
 
         gameStart();
+
     }
 
     else if (yourScore === scoreGoal) {
@@ -79,10 +80,11 @@ var checkWin = function () {
 
         winCount++;
 
-        $("#win-count").text(winCount);
+        $("#wins").text(winCount);
 
         gameStart();
     }
+    
 };
 // clicks for crystals
 
@@ -90,7 +92,7 @@ var addValues = function (clickedCrystal) {
 
     yourScore += clickedCrystal.value;
 
-    $("your-score").text(yourScore);
+    $("#your-score").text(yourScore);
 
     checkWin();
 
