@@ -1,23 +1,26 @@
 var crystal = {
     blue:
     {
-        name: "lue",
-        value: 0
+      name: "Blue",
+      value: 0
     },
-    green: {
+    green:
+    {
       name: "Green",
-      value: 0  
+      value: 0
     },
-    red: {
-        name: "Red",
-        value: 0
+    red:
+    {
+      name: "Red",
+      value: 0
     },
-    yellow: {
-        name: "Yellow",
-        value: 0
-    },
-
-};
+    yellow:
+    {
+      name: "Yellow",
+      value: 0
+    }
+  };
+  
 
 var yourScore = 0;
 var scoreGoal = 0;
@@ -27,20 +30,20 @@ var lossCount = 0;
 
 // gets random numbers
 
-var getRandom = function(min, max) {
+var getRandom = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-var gameStart = function() {
+var gameStart = function () {
 
     yourScore = 0;
 
     scoreGoal = getRandom(19, 120);
 
-    crystal.blue.value = getRandom(1,12);
-    crystal.red.value = getRandom(1,12);
-    crystal.green.value = getRandom(1,12);
-    crystal.yellow.value = getRandom(1,12);
+    crystal.blue.value = getRandom(1, 12);
+    crystal.red.value = getRandom(1, 12);
+    crystal.green.value = getRandom(1, 12);
+    crystal.yellow.value = getRandom(1, 12);
 
     $("#your-score").text(yourScore);
     $("#target-score").text(scoreGoal);
@@ -48,18 +51,18 @@ var gameStart = function() {
 
     // Tester
     console.log("-----------------------------------");
-    console.log("Target-Score: " + scoreGoal);
+    console.log("Target Score: " + scoreGoal);
     console.log("Blue: " + crystal.blue.value + " | Green: " + crystal.green.value + " | Red: " + crystal.red.value +
-      " | Yellow: " + crystal.yellow.value);
+        " | Yellow: " + crystal.yellow.value);
     console.log("-----------------------------------");
-  
-}
-    // win or lose reset
 
-var checkWin = function() {
+}
+// win or lose reset
+
+var checkWin = function () {
 
     // if current score is higher then add a loss to counter
-    if (scoreGoal > yourScore) {
+    if (yourScore > scoreGoal) {
         alert("You lost!");
         console.log("You lost");
 
@@ -67,10 +70,10 @@ var checkWin = function() {
 
         $("#loss-count").text(lossCount);
 
-        startGame();
+        gameStart();
     }
 
-    else if (scoreGoal === yourScore) {
+    else if (yourScore === scoreGoal) {
         alert("You Won!");
         console.log("You Won!");
 
@@ -78,9 +81,46 @@ var checkWin = function() {
 
         $("#win-count").text(winCount);
 
-        startGame();
+        gameStart();
     }
 };
+// clicks for crystals
+
+var addValues = function (clickedCrystal) {
+
+    yourScore += clickedCrystal.value;
+
+    $("your-score").text(yourScore);
+
+    checkWin();
+
+    console.log("Your Score " + yourScore);
+};
+
+// Start Game
+
+
+
+gameStart();
+$("#blue").click(function () {
+    addValues(crystal.blue);
+
+});
+$("#red").click(function () {
+    addValues(crystal.red);
+
+});
+
+$("#green").click(function () {
+    addValues(crystal.green);
+
+});
+
+$("#yellow").click(function () {
+    addValues(crystal.yellow);
+
+});
+
 
 
 
